@@ -4,8 +4,6 @@
 
   <%= render '_sidebar_search.rhtml' %>
 
-  <%= render '_sidebar_table_of_contents.rhtml' %>
-
   <div id="file-metadata">
     <%= render '_sidebar_in_files.rhtml' %>
     <%= render '_sidebar_VCS_info.rhtml' %>
@@ -15,7 +13,6 @@
     <%= render '_sidebar_sections.rhtml' %>
     <%= render '_sidebar_parent.rhtml' %>
     <%= render '_sidebar_includes.rhtml' %>
-    <%= render '_sidebar_extends.rhtml' %>
     <%= render '_sidebar_methods.rhtml' %>
   </div>
 
@@ -112,7 +109,7 @@
                   gsub( /^\w+\./m, '')).
                   gsub(/(.*)[-=]&gt;/, '\1&rarr;') %>
           </span>
-          <% if i == 0 and method.token_stream then %>
+          <% if i == 0 then %>
           <span class="method-click-advice">click to toggle source</span>
           <% end %>
         </div>
@@ -121,9 +118,7 @@
         <div class="method-heading">
           <span class="method-name"><%= h method.name %></span><span
             class="method-args"><%= method.param_seq %></span>
-          <% if method.token_stream then %>
           <span class="method-click-advice">click to toggle source</span>
-          <% end %>
         </div>
         <% end %>
 
@@ -132,15 +127,6 @@
           <%= method.description.strip %>
           <% else %>
           <p class="missing-docs">(Not documented)
-          <% end %>
-          <% if method.calls_super then %>
-            <div class="method-calls-super">
-              Calls superclass method
-              <%=
-                  method.superclass_method ?
-                  method.formatter.link(method.superclass_method.full_name, method.superclass_method.full_name) : nil
-              %>
-            </div>
           <% end %>
 
           <% if method.token_stream then %>
