@@ -123,11 +123,13 @@
         <% end %>
 
         <div class="method-description">
-          <% if method.comment then %>
-          <%= method.description.strip %>
-          <% else %>
-          <p class="missing-docs">(Not documented)
-          <% end %>
+          <div class="method-doc" id="<%= method.html_name %>-doc">
+            <% if method.comment then %>
+            <%= method.description.strip %>
+            <% else %>
+            <p class="missing-docs">(Not documented)
+            <% end %>
+          </div><!-- <%= method.html_name %>-doc -->
 
           <% if method.token_stream then %>
           <div class="method-source-code" id="<%= method.html_name %>-source">
